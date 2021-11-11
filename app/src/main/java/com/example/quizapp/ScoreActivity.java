@@ -17,6 +17,7 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         TextView textView=findViewById(R.id.idTvScore);
         Button button=findViewById(R.id.idBtnRestart);
+        Button home=findViewById(R.id.button6);
         if(getIntent().getExtras() != null) {
             Intent intent = getIntent();
             String score=intent.getStringExtra("score");
@@ -26,6 +27,14 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ScoreActivity.this,QuizActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ScoreActivity.this,MainActivity.class);
                 startActivity(i);
                 finish();
             }
