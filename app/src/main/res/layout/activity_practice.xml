@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+
         android:text="option 2"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -66,6 +67,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text="option 3"
+
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/Option2"
         app:layout_constraintHorizontal_bias="0.0"
@@ -77,6 +79,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="option 4"

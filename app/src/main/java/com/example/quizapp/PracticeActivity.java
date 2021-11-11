@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,7 +18,7 @@ public class PracticeActivity extends AppCompatActivity {
     private Button option1Btn,option2Btn,option3Btn,option4Btn;
     private ArrayList<QuizModel> quizModelArrayList;
     Random random;
-    int currScore=0,questionAttempted=1,currPos;
+    int questionAttempted=1,currPos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,12 @@ public class PracticeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(quizModelArrayList.get(currPos).getAnswer().equals(option1Btn.getText().toString()))
                 {
-                    currScore++;
+                    Toast toast= Toast. makeText(getApplicationContext(),"Correct Answer",Toast. LENGTH_SHORT);
+                    toast. show();
+                }
+                else{
+                    Toast toast= Toast. makeText(getApplicationContext(),"Wrong Answer\nCorrect Answer: "+quizModelArrayList.get(currPos).getAnswer(),Toast. LENGTH_SHORT);
+                    toast. show();
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
@@ -50,7 +56,12 @@ public class PracticeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(quizModelArrayList.get(currPos).getAnswer().equals(option2Btn.getText().toString()))
                 {
-                    currScore++;
+                    Toast toast= Toast. makeText(getApplicationContext(),"Correct Answer",Toast. LENGTH_SHORT);
+                    toast. show();
+                }
+                else{
+                    Toast toast= Toast. makeText(getApplicationContext(),"Wrong Answer\nCorrect Answer: "+quizModelArrayList.get(currPos).getAnswer(),Toast. LENGTH_SHORT);
+                    toast. show();
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
@@ -63,7 +74,12 @@ public class PracticeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(quizModelArrayList.get(currPos).getAnswer().equals(option3Btn.getText().toString()))
                 {
-                    currScore++;
+                    Toast toast= Toast. makeText(getApplicationContext(),"Correct Answer",Toast. LENGTH_SHORT);
+                    toast. show();
+                }
+                else{
+                    Toast toast= Toast. makeText(getApplicationContext(),"Wrong Answer\nCorrect Answer: "+quizModelArrayList.get(currPos).getAnswer(),Toast. LENGTH_SHORT);
+                    toast. show();
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
@@ -75,7 +91,12 @@ public class PracticeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(quizModelArrayList.get(currPos).getAnswer().equals(option4Btn.getText().toString()))
                 {
-                    currScore++;
+                    Toast toast= Toast. makeText(getApplicationContext(),"Correct Answer",Toast. LENGTH_SHORT);
+                    toast. show();
+                }
+                else{
+                    Toast toast= Toast. makeText(getApplicationContext(),"Wrong Answer\nCorrect Answer: "+quizModelArrayList.get(currPos).getAnswer(),Toast. LENGTH_SHORT);
+                    toast. show();
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
