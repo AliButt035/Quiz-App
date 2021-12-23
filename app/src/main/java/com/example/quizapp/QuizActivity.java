@@ -1,6 +1,7 @@
 package com.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.TypedArrayUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 
@@ -21,6 +25,7 @@ public class QuizActivity extends AppCompatActivity {
     private ArrayList<QuizModel> quizModelArrayList;
     Random random;
     int currScore=0,questionAttempted=1,currPos;
+    int temp[]={};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,8 @@ public class QuizActivity extends AppCompatActivity {
         random=new Random();
         getQuizQuestion(quizModelArrayList);
         currPos= random.nextInt(quizModelArrayList.size());
+        temp = Arrays.copyOf(temp, temp.length + 1);
+        temp[temp.length - 1] = currPos;
         setDataToViews(currPos);
         option1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +52,12 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
+                while(ArrayUtils.contains(temp, currPos)&&questionAttempted<=10)
+                {
+                    currPos=random.nextInt(quizModelArrayList.size());
+                }
+                temp = Arrays.copyOf(temp, temp.length + 1);
+                temp[temp.length - 1] = currPos;
                 setDataToViews(currPos);
             }
         });
@@ -57,6 +70,12 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
+                while(ArrayUtils.contains(temp, currPos)&&questionAttempted<=10)
+                {
+                    currPos=random.nextInt(quizModelArrayList.size());
+                }
+                temp = Arrays.copyOf(temp, temp.length + 1);
+                temp[temp.length - 1] = currPos;
                 setDataToViews(currPos);
             }
         });
@@ -70,6 +89,12 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
+                while(ArrayUtils.contains(temp, currPos)&&questionAttempted<=10)
+                {
+                    currPos=random.nextInt(quizModelArrayList.size());
+                }
+                temp = Arrays.copyOf(temp, temp.length + 1);
+                temp[temp.length - 1] = currPos;
                 setDataToViews(currPos);
             }
         });
@@ -82,6 +107,12 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 questionAttempted++;
                 currPos=random.nextInt(quizModelArrayList.size());
+                while(ArrayUtils.contains(temp, currPos)&&questionAttempted<=10)
+                {
+                    currPos=random.nextInt(quizModelArrayList.size());
+                }
+                temp = Arrays.copyOf(temp, temp.length + 1);
+                temp[temp.length - 1] = currPos;
                 setDataToViews(currPos);
             }
         });
@@ -95,11 +126,11 @@ public class QuizActivity extends AppCompatActivity {
     }
     private void setDataToViews(int currPos)
     {
-        questionNumberTv.setText("Questions Attempted :"+questionAttempted+"/10");
-        if(questionAttempted==10) {
+        if(questionAttempted>10) {
             showScoreSheet();
         }
         else {
+            questionNumberTv.setText("Questions Attempted :"+questionAttempted+"/10");
             questionTV.setText(quizModelArrayList.get(currPos).getQuestion());
             option1Btn.setText(quizModelArrayList.get(currPos).getOption1());
             option2Btn.setText(quizModelArrayList.get(currPos).getOption2());
@@ -119,6 +150,53 @@ public class QuizActivity extends AppCompatActivity {
         quizModelArrayList.add(new QuizModel("Which fruit is from heaven?","Apple","Fig","Banana","All of the Above","Fig"));
         quizModelArrayList.add(new QuizModel("How old was Prophet Muhammad(S.A.W) when he died?","70 years old","50 years old","63 years old","75 years old","63 years old"));
         quizModelArrayList.add(new QuizModel("Nisab of zakat on silver in tola?","52.5 tola","62.5 tola","7.5 tola","50 tola","52.5 tola"));
+
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString("Question",questionTV.getText().toString());
+        savedInstanceState.putString("QuestionMarker",questionNumberTv.getText().toString());
+        savedInstanceState.putString("Option1",option1Btn.getText().toString());
+        savedInstanceState.putString("Option2",option2Btn.getText().toString());
+        savedInstanceState.putString("Option3",option3Btn.getText().toString());
+        savedInstanceState.putString("Option4",option4Btn.getText().toString());
+        savedInstanceState.putInt("currPos",currPos);
+        savedInstanceState.putInt("currScore",currScore);
+        savedInstanceState.putIntArray("temp",temp);
+        savedInstanceState.putInt("questionAttempted",questionAttempted);
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //    private TextView questionTV,questionNumberTv;
+//    private Button option1Btn,option2Btn,option3Btn,option4Btn,optionNextBtn,optionFinishBtn;
+//    private ArrayList<QuizModel> quizModelArrayList;
+//    Random random;
+//    int questionAttempted=1,currPos;
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String tp = savedInstanceState.getString("Question");
+        questionTV.setText(tp);
+        tp = savedInstanceState.getString("QuestionMarker");
+        questionNumberTv.setText(tp);
+        tp = savedInstanceState.getString("Option1");
+        option1Btn.setText(tp);
+        tp = savedInstanceState.getString("Option2");
+        option2Btn.setText(tp);
+        tp = savedInstanceState.getString("Option3");
+        option3Btn.setText(tp);
+        tp = savedInstanceState.getString("Option4");
+        option4Btn.setText(tp);
+        int t=savedInstanceState.getInt("currPos");
+        currPos=t;
+        t=savedInstanceState.getInt("currScore");
+        currScore=t;
+        t=savedInstanceState.getInt("questionAttempted");
+        questionAttempted=t;
+        int [] te=savedInstanceState.getIntArray("temp");
+        temp=te;
 
     }
 }

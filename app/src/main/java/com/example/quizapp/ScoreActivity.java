@@ -11,11 +11,13 @@ import android.widget.TextView;
 public class ScoreActivity extends AppCompatActivity {
 
 
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        TextView textView=findViewById(R.id.idTvScore);
+        textView=findViewById(R.id.idTvScore);
         Button button=findViewById(R.id.idBtnRestart);
         Button home=findViewById(R.id.button6);
         if(getIntent().getExtras() != null) {
@@ -40,5 +42,16 @@ public class ScoreActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("Data",textView.getText().toString());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String scoreString = savedInstanceState.getString("Data");
+        textView.setText(scoreString);
     }
 }

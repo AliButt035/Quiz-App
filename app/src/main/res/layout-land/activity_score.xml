@@ -10,15 +10,15 @@
         android:id="@+id/idTvScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="Your Score"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="5dp"
+        android:text="Your Score"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginRight="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:text="Restart Quiz"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/idTvScore"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/idTvScore"
         app:layout_constraintTop_toBottomOf="@+id/idTvScore" />
 
@@ -41,11 +41,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:text="Go To Home"
         app:layout_constraintEnd_toEndOf="@+id/idBtnRestart"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/idBtnRestart"
         app:layout_constraintTop_toBottomOf="@+id/idBtnRestart" />
 
